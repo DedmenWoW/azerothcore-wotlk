@@ -10,3 +10,6 @@
 [submodule "modules/mod-dynamic-xp"]
 	path = modules/mod-dynamic-xp
 	url = https://github.com/DedmenWoW/mod-dynamic-xp.git
+[submodule "modules/mod-guildhouse"]
+	path = modules/mod-guildhouse
+	url = https://github.com/DedmenWoW/mod-guildhouse.git
