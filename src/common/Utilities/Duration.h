@@ -36,7 +36,7 @@ using Minutes = std::chrono::minutes;
 using Hours = std::chrono::hours;
 
 // Workaround for GCC and Clang 10 in C++20
-#if defined(__GNUC__) && (!defined(__clang__) || (__clang_major__ == 10))
+#if defined(__GNUC__) && (!defined(__clang__) || (__clang_major__ == 11))
 /// Days shorthand typedef.
 using Days = std::chrono::duration<__INT64_TYPE__, std::ratio<86400>>;
 

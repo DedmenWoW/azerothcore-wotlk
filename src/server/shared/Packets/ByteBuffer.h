@@ -196,6 +196,14 @@ public:
         return *this;
     }
 
+#ifndef _WIN32
+    ByteBuffer& operator<<(long long value)
+    {
+        append<int64>(value);
+        return *this;
+    }
+#endif
+
     // floating points
     ByteBuffer& operator<<(float value)
     {

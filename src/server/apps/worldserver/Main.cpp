@@ -125,11 +125,11 @@ int main(int argc, char** argv)
     // Command line parsing
     auto configFile = fs::path(sConfigMgr->GetConfigPath() + std::string(_ACORE_CORE_CONFIG));
     std::string configService;
-    auto vm = GetConsoleArguments(argc, argv, configFile, configService);
+    //auto vm = GetConsoleArguments(argc, argv, configFile, configService);
 
     // exit if help or version is enabled
-    if (vm.count("help"))
-        return 0;
+    //if (vm.count("help"))
+    //    return 0;
 
 #if AC_PLATFORM == AC_PLATFORM_WINDOWS
     if (configService.compare("install") == 0)
@@ -770,6 +770,7 @@ void AuctionListingRunnable()
 
 variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile, [[maybe_unused]] std::string& configService)
 {
+/*
     options_description all("Allowed options");
     all.add_options()
         ("help,h", "print usage message")
@@ -784,9 +785,9 @@ variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile, [
 
     all.add(win);
 #endif
-
+*/
     variables_map vm;
-
+/*
     try
     {
         store(command_line_parser(argc, argv).options(all).allow_unregistered().run(), vm);
@@ -805,6 +806,6 @@ variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile, [
     {
         sConfigMgr->setDryRun(true);
     }
-
+*/
     return vm;
 }

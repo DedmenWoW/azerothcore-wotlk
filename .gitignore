@@ -92,3 +92,8 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
+
+.vs/
+out/
+vcpkg_installed/
+!modules/*

@@ -57,6 +57,12 @@ template void PreparedStatementBase::SetValidData(const uint8 index, int16 const
 template void PreparedStatementBase::SetValidData(const uint8 index, uint32 const& value);
 template void PreparedStatementBase::SetValidData(const uint8 index, int32 const& value);
 template void PreparedStatementBase::SetValidData(const uint8 index, uint64 const& value);
+template<>
+void PreparedStatementBase::SetValidData<long long>(const uint8 index, long long const& value)
+{
+return SetValidData(index, (int64)value);
+}
+
 template void PreparedStatementBase::SetValidData(const uint8 index, int64 const& value);
 template void PreparedStatementBase::SetValidData(const uint8 index, bool const& value);
 template void PreparedStatementBase::SetValidData(const uint8 index, float const& value);

@@ -271,15 +271,16 @@ void BanExpiryHandler(std::weak_ptr<Acore::Asio::DeadlineTimer> banExpiryCheckTi
 
 variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile)
 {
+/*
     options_description all("Allowed options");
     all.add_options()
         ("help,h", "print usage message")
         ("version,v", "print version build info")
         ("dry-run,d", "Dry run")
         ("config,c", value<fs::path>(&configFile)->default_value(fs::path(sConfigMgr->GetConfigPath() + std::string(_ACORE_REALM_CONFIG))), "use <arg> as configuration file");
-
+*/
     variables_map variablesMap;
-
+/*
     try
     {
         store(command_line_parser(argc, argv).options(all).allow_unregistered().run(), variablesMap);
@@ -298,6 +299,6 @@ variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile)
     {
         sConfigMgr->setDryRun(true);
     }
-
+*/
     return variablesMap;
 }

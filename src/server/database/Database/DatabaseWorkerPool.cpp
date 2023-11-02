@@ -39,9 +39,9 @@
 #include <sstream>
 #endif
 
-#if MARIADB_VERSION_ID >= 100600
+#if MARIADB_VERSION_ID >= 100500
 #define MIN_MYSQL_SERVER_VERSION 100500u
-#define MIN_MYSQL_CLIENT_VERSION 30203u
+#define MIN_MYSQL_CLIENT_VERSION 30103u
 #else
 #define MIN_MYSQL_SERVER_VERSION 50700u
 #define MIN_MYSQL_CLIENT_VERSION 50700u
@@ -67,14 +67,14 @@ DatabaseWorkerPool<T>::DatabaseWorkerPool() :
 
 #if !defined(MARIADB_VERSION_ID) || MARIADB_VERSION_ID < 100600
     bool isSupportClientDB = mysql_get_client_version() >= MIN_MYSQL_CLIENT_VERSION;
-    bool isSameClientDB = mysql_get_client_version() == MYSQL_VERSION_ID;
+    bool isSameClientDB = true; //mysql_get_client_version() == MYSQL_VERSION_ID;
 #else // MariaDB 10.6+
     bool isSupportClientDB = mysql_get_client_version() >= MIN_MYSQL_CLIENT_VERSION;
     bool isSameClientDB    = true; // Client version 3.2.3?
 #endif
 
-    WPFatal(isSupportClientDB, "AzerothCore does not support MySQL versions below 5.7 or MariaDB versions below 10.5.\n\nFound version: {} / {}. Server compiled with: {}.\nSearch the wiki for ACE00043 in Common Errors (https://www.azerothcore.org/wiki/common-errors#ace00043).",
-        mysql_get_client_info(), mysql_get_client_version(), MYSQL_VERSION_ID);
+    WPFatal(isSupportClientDB, "AzerothCore does not support MySQL versions below 5.7 or MariaDB versions below 10.5.\n\nFound version: {} / {}. Server compiled with: {}, want {}.\nSearch the wiki for ACE00043 in Common Errors (https://www.azerothcore.org/wiki/common-errors#ace00043).",
+        mysql_get_client_info(), mysql_get_client_version(), MYSQL_VERSION_ID, MIN_MYSQL_CLIENT_VERSION);
     WPFatal(isSameClientDB, "Used MySQL library version ({} id {}) does not match the version id used to compile AzerothCore (id {}).\nSearch the wiki for ACE00046 in Common Errors (https://www.azerothcore.org/wiki/common-errors#ace00046).",
         mysql_get_client_info(), mysql_get_client_version(), MYSQL_VERSION_ID);
 }
