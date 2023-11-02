@@ -18,6 +18,15 @@ if(WIN32)
   set(Boost_USE_STATIC_LIBS        ON)
   set(Boost_USE_MULTITHREADED      ON)
   set(Boost_USE_STATIC_RUNTIME     OFF)
+
+  include("C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
+  set(Boost_INCLUDE_DIR D:/dev/AzerothCore/vcpkg_installed/x64-windows/include)
+  set(BOOST_ROOT ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET})
+  #set(BOOST_ROOT D:/dev/AzerothCore/vcpkg_installed)
+  #set(Boost_DIR D:/dev/AzerothCore/vcpkg_installed)
+  #set(Boost_NO_SYSTEM_PATHS ON)
+
 endif()
 
 set(Boost_NO_WARN_NEW_VERSIONS ON)
@@ -31,7 +40,6 @@ else()
   set(BOOST_REQUIRED_VERSION 1.74)
 endif()
 
-find_package(Boost ${BOOST_REQUIRED_VERSION} REQUIRED system filesystem program_options iostreams regex)
 
 if(NOT Boost_FOUND)
   if(NOT DEFINED ENV{Boost_ROOT} AND NOT DEFINED Boost_DIR AND NOT DEFINED BOOST_ROOT AND NOT DEFINED BOOSTROOT)

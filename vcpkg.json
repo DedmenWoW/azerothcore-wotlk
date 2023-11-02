@@ -1,0 +1,18 @@
+{
+	"dependencies": [
+    "libmariadb",
+    "openssl",
+	"boost-system",
+	"boost-filesystem",
+	"boost-program-options",
+	"boost-iostreams",
+	"boost-regex",
+	"boost-asio",
+	"boost-dll",
+	"boost-process"
+  ],
+  "overrides": [
+	{ "name": "boost", "version": "1.76.0" }
+]
+	
+}
