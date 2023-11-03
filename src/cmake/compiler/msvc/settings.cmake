@@ -59,6 +59,8 @@ else()
   message(STATUS "MSVC: Enabled SSE2 support")
 endif()
 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:10000000")
+
 # Set build-directive (used in core to tell which buildtype we used)
 # msbuild/devenv don't set CMAKE_MAKE_PROGRAM, you can choose build type from a dropdown after generating projects
 if("${CMAKE_MAKE_PROGRAM}" MATCHES "MSBuild")
