@@ -13,3 +13,6 @@
 [submodule "modules/mod-guildhouse"]
 	path = modules/mod-guildhouse
 	url = https://github.com/DedmenWoW/mod-guildhouse.git
+[submodule "modules/mod-transmog"]
+	path = modules/mod-transmog
+	url = https://github.com/azerothcore/mod-transmog.git
