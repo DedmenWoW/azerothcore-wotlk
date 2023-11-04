@@ -33,7 +33,7 @@
 constexpr auto AH_MINIMUM_DEPOSIT = 100;
 
 // Proof of concept, we should shift the info we're obtaining in here into AuctionEntry probably
-static bool SortAuction(AuctionEntry* left, AuctionEntry* right, AuctionSortOrderVector& sortOrder, Player* player, bool checkMinBidBuyout)
+static bool SortAuction(const AuctionEntry* left, const AuctionEntry* right, const AuctionSortOrderVector& sortOrder, const Player* player, bool checkMinBidBuyout)
 {
     for (auto& thisOrder : sortOrder)
     {
@@ -737,11 +737,9 @@ bool AuctionHouseObject::BuildListAuctionItems(WorldPacket& data, Player* player
     // pussywizard: optimization, this is a simplified case
     if (itemClass == 0xffffffff && itemSubClass == 0xffffffff && inventoryType == 0xffffffff && quality == 0xffffffff && levelmin == 0x00 && levelmax == 0x00 && usable == 0x00 && wsearchedname.empty())
     {
-        auto itr = GetAuctionsBegin();
-        for (; itr != GetAuctionsEnd(); ++itr)
-        {
-            auctionShortlist.push_back(itr->second);
-        }
+        auctionShortlist.reserve(GetAuctions().size());
+        for (auto& [key, value] : GetAuctions())
+            auctionShortlist.emplace_back(value);
     }
     else
     {
@@ -892,21 +890,27 @@ bool AuctionHouseObject::BuildListAuctionItems(WorldPacket& data, Player* player
         AuctionSortInfo const& sortInfo = *sortOrder.begin();
         if (sortInfo.sortOrder >= AUCTION_SORT_MINLEVEL && sortInfo.sortOrder < AUCTION_SORT_MAX && sortInfo.sortOrder != AUCTION_SORT_UNK4)
         {
+            auto sortFunction = [&sortOrder, player, checkMinBidBuyout = sortInfo.sortOrder == AUCTION_SORT_BID] (const AuctionEntry* left, const AuctionEntry* right)
+                {
+                    return SortAuction(left, right, sortOrder, player, checkMinBidBuyout);
+                };
+
             // Partial sort to improve performance a bit, but the last pages will burn
             if (listfrom + 50 <= auctionShortlist.size())
             {
-                std::partial_sort(auctionShortlist.begin(), auctionShortlist.begin() + listfrom + 50, auctionShortlist.end(),
-                    std::bind(SortAuction, std::placeholders::_1, std::placeholders::_2, sortOrder, player, sortInfo.sortOrder == AUCTION_SORT_BID));
+                std::partial_sort(auctionShortlist.begin(), auctionShortlist.begin() + listfrom + 50, auctionShortlist.end(), sortFunction);
             }
             else
             {
-                std::sort(auctionShortlist.begin(), auctionShortlist.end(), std::bind(SortAuction, std::placeholders::_1, std::placeholders::_2, sortOrder,
-                    player, sortInfo.sortOrder == AUCTION_SORT_BID));
+                std::sort(auctionShortlist.begin(), auctionShortlist.end(), sortFunction);
             }
         }
     }
 
-    for (auto& auction : auctionShortlist)
+    if (listfrom && listfrom < auctionShortlist.size())
+        auctionShortlist.erase(auctionShortlist.begin(), auctionShortlist.begin() + listfrom);
+
+    for (const auto& auction : auctionShortlist)
     {
         // Add the item if no search term or if entered search term was found
         if (count < 50 && totalcount >= listfrom)
