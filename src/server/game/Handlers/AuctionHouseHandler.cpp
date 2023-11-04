@@ -758,7 +758,7 @@ void WorldSession::HandleAuctionListItems(WorldPacket& recvData)
     }
 
     // pussywizard:
-    const Milliseconds delay = 2s;
+    const Milliseconds delay = 200ms;
     const Milliseconds now = GameTime::GetGameTimeMS();
     Milliseconds diff = GetMSTimeDiff(_lastAuctionListItemsMSTime, now);
     if (diff > delay)
