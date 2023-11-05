@@ -910,10 +910,12 @@ bool AuctionHouseObject::BuildListAuctionItems(WorldPacket& data, Player* player
         }
     }
 
-    const std::span<AuctionEntry*> auctionShortlistSpan(auctionShortlist);
+    std::span<AuctionEntry*> auctionShortlistSpan(auctionShortlist);
     totalcount = auctionShortlistSpan.size();
-    
-    for (const auto& auction : auctionShortlistSpan.subspan(listfrom, getAll ? std::dynamic_extent : 50))
+
+    auctionShortlistSpan = auctionShortlistSpan.subspan(listfrom);
+
+    for (const auto& auction : getAll ? auctionShortlistSpan : auctionShortlistSpan.subspan(0, std::min(50ull, auctionShortlistSpan.size())))
     {
         // Add the item if no search term or if entered search term was found
 
