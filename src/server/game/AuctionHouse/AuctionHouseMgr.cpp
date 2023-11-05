@@ -30,6 +30,7 @@
 #include "World.h"
 #include "WorldPacket.h"
 #include <vector>
+#include <utility>
 
 constexpr auto AH_MINIMUM_DEPOSIT = 100;
 
