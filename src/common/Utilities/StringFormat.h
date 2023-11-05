@@ -18,6 +18,7 @@
 #ifndef _STRING_FORMAT_H_
 #define _STRING_FORMAT_H_
 
+#include <locale>
 #include "Define.h"
 #include <fmt/format.h>
 #include <fmt/printf.h>
