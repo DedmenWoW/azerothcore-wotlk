@@ -68,7 +68,7 @@ bool AuctionListItemsDelayEvent::Execute()
     {
         data.put<uint32>(0, count);
         data << (uint32) totalcount;
-        data << (uint32) 300; // clientside search cooldown [ms] (gray search button)
+        data << (uint32) 100; // clientside search cooldown [ms] (gray search button)
         plr->GetSession()->SendPacket(&data);
     }
 
