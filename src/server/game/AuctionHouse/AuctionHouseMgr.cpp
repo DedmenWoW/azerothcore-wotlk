@@ -16,6 +16,9 @@
  */
 
 #include "AuctionHouseMgr.h"
+
+#include <span>
+
 #include "Common.h"
 #include "DBCStores.h"
 #include "DatabaseEnv.h"
@@ -907,24 +910,18 @@ bool AuctionHouseObject::BuildListAuctionItems(WorldPacket& data, Player* player
         }
     }
 
-    if (listfrom && listfrom < auctionShortlist.size())
-        auctionShortlist.erase(auctionShortlist.begin(), auctionShortlist.begin() + listfrom);
+    const std::span<AuctionEntry*> auctionShortlistSpan(auctionShortlist);
 
-    for (const auto& auction : auctionShortlist)
+    for (const auto& auction : auctionShortlistSpan.subspan(listfrom, 50))
     {
         // Add the item if no search term or if entered search term was found
-        if (count < 50 && totalcount >= listfrom)
-        {
-            Item* item = sAuctionMgr->GetAItem(auction->item_guid);
-            if (!item)
-            {
-                continue;
-            }
 
-            ++count;
-            auction->BuildAuctionInfo(data);
+        Item* item = sAuctionMgr->GetAItem(auction->item_guid);
+        if (!item)
+        {
+            continue;
         }
-        ++totalcount;
+        auction->BuildAuctionInfo(data);
     }
 
     return true;
