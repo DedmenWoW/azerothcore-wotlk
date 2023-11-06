@@ -16,3 +16,6 @@
 [submodule "modules/mod-transmog"]
 	path = modules/mod-transmog
 	url = https://github.com/azerothcore/mod-transmog.git
+[submodule "modules/mod-junk-to-gold"]
+	path = modules/mod-junk-to-gold
+	url = https://github.com/noisiver/mod-junk-to-gold
