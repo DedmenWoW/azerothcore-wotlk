@@ -19,3 +19,6 @@
 [submodule "modules/mod-junk-to-gold"]
 	path = modules/mod-junk-to-gold
 	url = https://github.com/noisiver/mod-junk-to-gold
+[submodule "modules/mod-gain-honor-guard"]
+	path = modules/mod-gain-honor-guard
+	url = https://github.com/azerothcore/mod-gain-honor-guard
