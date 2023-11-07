@@ -130,7 +130,7 @@ class ObjectGuid
         static typename std::enable_if<ObjectGuidTraits<type>::MapSpecific, ObjectGuid>::type Create(uint32 entry, LowType counter) { return MapSpecific(type, entry, counter); }
 
         ObjectGuid()  = default;
-        explicit ObjectGuid(uint64 guid) : _guid(guid) { }
+        constexpr explicit ObjectGuid(uint64 guid) : _guid(guid) { }
         ObjectGuid(HighGuid hi, uint32 entry, LowType counter) : _guid(counter ? uint64(counter) | (uint64(entry) << 24) | (uint64(hi) << 48) : 0) { }
         ObjectGuid(HighGuid hi, LowType counter) : _guid(counter ? uint64(counter) | (uint64(hi) << 48) : 0) { }
 
