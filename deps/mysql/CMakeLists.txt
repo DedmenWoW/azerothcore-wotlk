@@ -21,4 +21,4 @@ set_target_properties(mysql
     IMPORTED_LOCATION
       "${MYSQL_LIBRARY}"
     INTERFACE_INCLUDE_DIRECTORIES
-      "${MYSQL_INCLUDE_DIR}")
+      "${MYSQL_INCLUDE_DIR};${MYSQL_INCLUDE_DIR}/mysql")

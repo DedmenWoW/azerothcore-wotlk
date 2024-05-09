@@ -36,10 +36,10 @@ include (CheckCXXSourceCompiles)
 
 if (WIN32)
   # On windows the requirements are higher according to the wiki.
-  set(BOOST_REQUIRED_VERSION 1.76)
+  set(BOOST_REQUIRED_VERSION 1.83)
   #find_package(Boost ${BOOST_REQUIRED_VERSION} REQUIRED system filesystem program_options iostreams regex)
   
-  set(Boost_LIBRARIES "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_system-vc143-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_filesystem-vc143-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_program_options-vc143-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_iostreams-vc143-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_regex-vc143-mt-gd.lib;")
+  set(Boost_LIBRARIES "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_system-vc144-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_filesystem-vc144-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_program_options-vc144-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_iostreams-vc144-mt-gd.lib;${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/boost_regex-vc144-mt-gd.lib;")
   set(Boost_INCLUDE_DIRS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include")
 
 else()

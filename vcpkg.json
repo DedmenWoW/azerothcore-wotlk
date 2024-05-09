@@ -1,18 +1,24 @@
 {
-	"dependencies": [
+  "name": "azeroth-core",
+  "version": "1.0.0",
+
+  "dependencies": [
     "libmariadb",
     "openssl",
-	"boost-system",
-	"boost-filesystem",
-	"boost-program-options",
-	"boost-iostreams",
-	"boost-regex",
-	"boost-asio",
-	"boost-dll",
-	"boost-process"
+    "boost-system",
+    "boost-filesystem",
+    "boost-program-options",
+    "boost-iostreams",
+    "boost-regex",
+    "boost-asio",
+    "boost-dll",
+    "boost-process"
   ],
   "overrides": [
-	{ "name": "boost", "version": "1.76.0" }
-]
-	
+    {
+      "name": "boost",
+      "version": "1.76.0"
+    }
+  ]
+
 }
