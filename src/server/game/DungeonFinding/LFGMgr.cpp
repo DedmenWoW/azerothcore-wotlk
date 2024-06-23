@@ -650,8 +650,8 @@ namespace lfg
                         }
                     }
 
-                    if (joinData.result == LFG_JOIN_OK && memberCount != grp->GetMembersCount())
-                        joinData.result = LFG_JOIN_DISCONNECTED;
+                    //if (joinData.result == LFG_JOIN_OK && memberCount != grp->GetMembersCount())
+                    //    joinData.result = LFG_JOIN_DISCONNECTED;
                 }
             }
             else
