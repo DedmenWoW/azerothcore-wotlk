@@ -129,13 +129,13 @@ uint32 MySQLConnection::Open()
 
     if (m_connectionInfo.ssl != "")
     {
-        mysql_ssl_mode opt_use_ssl = SSL_MODE_DISABLED;
-        if (m_connectionInfo.ssl == "ssl")
-        {
-            opt_use_ssl = SSL_MODE_REQUIRED;
-        }
-
-        mysql_options(mysqlInit, MYSQL_OPT_SSL_MODE, (char const*)&opt_use_ssl);
+        //mysql_ssl_mode opt_use_ssl = SSL_MODE_DISABLED;
+        //if (m_connectionInfo.ssl == "ssl")
+        //{
+        //    opt_use_ssl = SSL_MODE_REQUIRED;
+        //}
+		//
+        //mysql_options(mysqlInit, MYSQL_OPT_SSL_MODE, (char const*)&opt_use_ssl);
     }
 
     m_Mysql = reinterpret_cast<MySQLHandle*>(mysql_real_connect(mysqlInit, m_connectionInfo.host.c_str(), m_connectionInfo.user.c_str(),
