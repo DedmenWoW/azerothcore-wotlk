@@ -276,10 +276,10 @@ void BanExpiryHandler(std::weak_ptr<boost::asio::steady_timer> banExpiryCheckTim
         }
     }
 }
-
+/*
 variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile)
 {
-
+  
     options_description all("Allowed options");
     all.add_options()
         ("help,h", "print usage message")
@@ -310,3 +310,4 @@ variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile)
 
     return variablesMap;
 }
+*/
