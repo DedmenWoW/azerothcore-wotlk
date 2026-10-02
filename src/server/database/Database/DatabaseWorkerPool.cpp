@@ -386,6 +386,8 @@ void DatabaseWorkerPool<T>::KeepAlive()
 */
 bool DatabaseIncompatibleVersion(std::string const mysqlVersion)
 {
+
+    return false;
     // anon func to turn a version string into an array of uint8
     // "1.2.3" => [1, 2, 3]
     auto parse = [](std::string const& input)
